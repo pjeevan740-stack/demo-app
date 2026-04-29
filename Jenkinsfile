@@ -7,10 +7,9 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
-                git branch: 'main', url:'https://github.com/Naveen04jan/ven.git',
+                git branch: 'main', url:'https://github.com/Naveen04jan/ven.git', 
                 credentialsId: 'github-token'
             }
         }
@@ -31,13 +30,26 @@ pipeline {
             steps {
                 sh 'mvn package'
             }
-        
-        
         }
+
         stage('Run Application') {
             steps {
                 sh 'mvn exec:java -Dexec.mainClass="com.example.app.App"'
             }
+        }
+    }
+
+    /* --- ADDED POST SECTION --- */
+    post {
+        success {
+            mail to: 'your-email@example.com',
+                 subject: "Success: Pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                 body: "The build was successful. View the details here: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'your-email@example.com',
+                 subject: "Failed: Pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                 body: "The build failed. Check the logs at: ${env.BUILD_URL}"
         }
     }
 }
