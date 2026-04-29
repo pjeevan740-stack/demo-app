@@ -42,12 +42,12 @@ pipeline {
     /* --- ADDED POST SECTION --- */
     post {
         success {
-            mail to: 'your-email@example.com',
+            mail to: 'itsmejnyanesh@gmail.com',
                  subject: "Success: Pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                  body: "The build was successful. View the details here: ${env.BUILD_URL}"
         }
         failure {
-            mail to: 'your-email@example.com',
+            mail to: 'itsmejnyanesh@gmail.com',
                  subject: "Failed: Pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                  body: "The build failed. Check the logs at: ${env.BUILD_URL}"
         }
