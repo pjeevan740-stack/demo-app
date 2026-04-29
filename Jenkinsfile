@@ -52,7 +52,7 @@ pipeline {
             emailext(
                  subject: "Failed: Pipeline ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                  body: "The build failed. Check the logs at: ${env.BUILD_URL}"
-                 to:"pjeevan740@gmail"
+                 to:"pjeevan740@gmail.com"
                 )
         }
     }
